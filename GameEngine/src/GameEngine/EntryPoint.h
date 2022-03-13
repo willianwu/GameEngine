@@ -1,5 +1,7 @@
 #pragma once
 
+
+
 #ifdef GE_PLATFORM_WINDOWS
 
 extern GameEngine::Application* GameEngine::CreateApplication();

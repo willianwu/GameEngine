@@ -1,4 +1,5 @@
 #include "Application.h"
+
 namespace GameEngine {
 
 	Application::Application() {
@@ -8,6 +9,6 @@ namespace GameEngine {
 
 	}
 	void Application::Run() {
-		while (true);
+		while (true) ;
 	}
 }
