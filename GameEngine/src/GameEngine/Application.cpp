@@ -1,4 +1,8 @@
 #include "Application.h"
+#include "Events/ApplicationEvent.h"
+#include "Log.h"
+#include "Gepch.h"
+
 
 namespace GameEngine {
 
@@ -9,6 +13,8 @@ namespace GameEngine {
 
 	}
 	void Application::Run() {
-		while (true) ;
+		WindowResizeEvent e(1280, 720);
+		GE_CORE_TRACE(e);
+		while (true);
 	}
 }
