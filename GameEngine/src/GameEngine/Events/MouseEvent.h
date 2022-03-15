@@ -7,7 +7,8 @@
 namespace GameEngine {
 	class GAMEENGINE_API MouseMovedEvent : public Event
 	{
-		MouseMovedEvent(float x,float y)
+	public:
+		MouseMovedEvent(const float x,const float y)
 			:m_MouseX(x),m_MouseY(y){}
 		inline float GetX() const { return m_MouseX;}
 		inline float GetY() const { return m_MouseY;}
@@ -25,10 +26,10 @@ namespace GameEngine {
 		float m_MouseX, m_MouseY;
 	};
 
-	class MouseScrolledEvent :public Event
+	class MouseScrolledEvent : public Event
 	{
 	public:
-		MouseScrolledEvent(float xOffset,float yOffset)
+		MouseScrolledEvent(const float xOffset,const float yOffset)
 			:m_XOffset(xOffset),m_YOffset(yOffset){}
 		inline float GetXOffset() const { return m_XOffset;}
 		inline float GetYOffset() const { return m_YOffset;}
@@ -69,7 +70,22 @@ namespace GameEngine {
 			ss << "MouseButtonPressedEvent: " << m_Button;
 			return ss.str();
 		}
+		EVENT_CLASS_TYPE(MouseButtonPressed)
 	};
+	class GAMEENGINE_API MouseButtonReleasedEvent :public MouseButtonEvent
+	{
+	public:
+		MouseButtonReleasedEvent(int button)
+			:MouseButtonEvent(button){}
+		std::string Tostring() const override
+		{
+			std::stringstream ss;
+			ss << "MouseButtonReleasedEvent: " << m_Button;
+			return ss.str();
+		}
+		EVENT_CLASS_TYPE(MouseButtonReleased)
+	};
+
 
 
 }

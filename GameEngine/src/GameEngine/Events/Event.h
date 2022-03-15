@@ -1,5 +1,6 @@
 #pragma once
-#include "../Gepch.h"
+#include <sstream>
+#include <functional>
 
 namespace GameEngine {
 	enum class EventType
@@ -41,7 +42,7 @@ namespace GameEngine {
 		{
 			return GetCategoryFlags() & category;
 		}
-	protected:
+
 		bool m_Handled = false;
 	};
 

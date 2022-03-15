@@ -10,6 +10,10 @@ workspace "GameEngine"
     }
 
     outputdir="%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+--Include directories relative to root folder(solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "GameEngine/vendor/GLFW/include"
+include "GameEngine/vendor/GLFW"
 
 project "GameEngine"
     location "GameEngine"
@@ -18,9 +22,6 @@ project "GameEngine"
     targetdir("bin/" ..outputdir.. "/%{prj.name}")
     objdir("bin-int/" ..outputdir.. "/%{prj.name}")
 
-    pchheader "Gepch.h"
-    pchsource "GameEngine/src/GameEngine/Gepch.cpp"
-
     files
     {
         "%{prj.name}/src/**.h",
@@ -28,7 +29,15 @@ project "GameEngine"
     }
     includedirs
     {
-        "%{prj.name}/vendor/spdlog/include"
+        "%{prj.name}/src",
+        "%{prj.name}/vendor/spdlog/include",
+        "%{IncludeDir.GLFW}"
+    }
+
+    links
+    {
+        "GLFW",
+        "opengl32.lib"
     }
 
     filter "system:windows"
