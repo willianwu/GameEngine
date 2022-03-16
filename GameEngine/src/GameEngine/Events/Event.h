@@ -9,7 +9,8 @@ namespace GameEngine {
 		WindowClose,WindowResize,WindowFocus,WindowLostFocus,WindowMoved,
 		AppTick,AppUpdate,AppRender,
 		KeyPressed,KeyReleased,
-		MouseButtonPressed,MouseButtonReleased,MouseMoved,MouseScrolled
+        MouseMoved,MouseScrolled,
+		MouseButtonPressed,MouseButtonReleased
 	};
 
 	enum EventCategory
@@ -26,6 +27,8 @@ namespace GameEngine {
 #define EVENT_CLASS_TYPE(type) static EventType GetStaticType(){return EventType::##type;}\
 								virtual EventType GetEventType() const override {return GetStaticType();}\
 								virtual const char* GetName() const override {return #type;}
+	//单个#的作用是将type转换为字符串形式，加上双引号
+	//两个##的作用则是表示连接
 
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override {return category;}
 
@@ -33,6 +36,7 @@ namespace GameEngine {
 	{
 		friend class EventDispatcher;
 	public:
+		//声明了几个纯虚函数，需要在派生类中进行定义
 		virtual EventType GetEventType() const = 0;
 		virtual const char* GetName() const = 0;
 		virtual int GetCategoryFlags() const = 0;
@@ -52,10 +56,8 @@ namespace GameEngine {
 		using EventFn = std::function<bool(T&)>;
 	public:
 		EventDispatcher(Event& event)
-			:m_Event(event)
-		{
-
-		}
+			:m_Event(event){}
+	
 		template<typename T>
 		bool Dispatch(EventFn<T> func)
 		{

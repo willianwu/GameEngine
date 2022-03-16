@@ -138,6 +138,8 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\GameEngine\LayerStack.h" />
+    <ClInclude Include="src\GameEngine\Layer.h" />
     <ClInclude Include="src\GameEngine.h" />
     <ClInclude Include="src\GameEngine\Application.h" />
     <ClInclude Include="src\GameEngine\Core.h" />
@@ -152,6 +154,8 @@
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\GameEngine\LayerStack.cpp" />
+    <ClCompile Include="src\GameEngine\Layer.cpp" />
     <ClCompile Include="src\GameEngine\Application.cpp" />
     <ClCompile Include="src\GameEngine\Gepch.cpp" />
     <ClCompile Include="src\GameEngine\Log.cpp" />
