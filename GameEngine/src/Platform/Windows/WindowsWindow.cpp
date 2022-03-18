@@ -3,6 +3,7 @@
 #include "GameEngine/Events/ApplicationEvent.h"
 #include "GameEngine/Events/MouseEvent.h"
 #include "GameEngine/Events/KeyEvent.h"
+#include "GLFW/glfw3.h"
 
 namespace GameEngine {
 	static bool s_GLFWInitialized = false;
@@ -43,6 +44,8 @@ namespace GameEngine {
 		}
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		GE_CORE_ASSERT(status,"Failed to intialize Glad")
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 

@@ -13,14 +13,20 @@ namespace GameEngine
 			delete layer;
 		}
 	}
+	
+	//作用是加入layer
 	void LayerStack::PushLayer(Layer* layer)
 	{
 		m_LayerInsert = m_Layers.emplace(m_LayerInsert, layer);
 	}
-	void LayerStack::PopOverlay(Layer* overlay)
+
+	//作用是在最后加入layer
+	void LayerStack::PushOverlay(Layer* overlay)
 	{
 		m_Layers.emplace_back(overlay);
 	}
+
+	//如果layer不在最后面，删除这个layer
 	void LayerStack::PopLayer(Layer* layer)
 	{
 		auto it = std::find(m_Layers.begin(), m_Layers.end(), layer);
