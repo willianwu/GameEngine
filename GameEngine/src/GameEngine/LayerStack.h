@@ -5,6 +5,7 @@
 
 namespace GameEngine
 {
+	//LayerStack主要用来层的加入和删除逻辑
 	class GAMEENGINE_API LayerStack
 	{
 	public:

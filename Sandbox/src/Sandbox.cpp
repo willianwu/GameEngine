@@ -1,6 +1,7 @@
 #include <GameEngine.h>
 #include "GameEngine/LayerStack.h"
 
+//定义了一个example类，
 class ExampleLayer :public GameEngine::Layer
 {
 public:
@@ -24,7 +25,9 @@ class Sandbox:public GameEngine::Application
 public:
 	Sandbox()
 	{
+		//首先创造一个Layer
 		PushLayer(new ExampleLayer());
+		//在上面Layer的基础上加入一个ImGuiLayer
 		PushOverLay(new GameEngine::ImGuiLayer());
 	}
 
